@@ -1,3 +1,4 @@
+import path from "path";
 import YTDlpWrap from "yt-dlp-wrap";
 import ytSearch from "yt-search";
 
@@ -34,6 +35,8 @@ export async function getPlaylistVideos(
 }
 
 export function getAudioStreamUrl(videoUrl: string): Promise<string> {
+  const cookiesPath = path.resolve(__dirname, "../data/cookies.txt"); // Chemin vers le fichier cookies.txt
+
   return ytDlpWrap
     .execPromise([
       "-f",
@@ -41,6 +44,8 @@ export function getAudioStreamUrl(videoUrl: string): Promise<string> {
       "--get-url",
       "--force-ipv4",
       "--geo-bypass",
+      "--cookies",
+      cookiesPath,
       videoUrl,
     ])
     .then((result) => result.trim())
