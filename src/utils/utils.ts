@@ -2,7 +2,7 @@ import path from "path";
 import YTDlpWrap from "yt-dlp-wrap";
 import ytSearch from "yt-search";
 
-const ytDlpWrap = new YTDlpWrap("./bin/yt-dlp"); // Spécifiez le chemin du binaire
+const ytDlpWrap = new YTDlpWrap(); // Spécifiez le chemin du binaire
 
 /**
  * Fetches videos from a YouTube playlist.
@@ -35,8 +35,6 @@ export async function getPlaylistVideos(
 }
 
 export function getAudioStreamUrl(videoUrl: string): Promise<string> {
-  const cookiesPath = path.resolve(__dirname, "../../data/cookies.txt");
-
   return ytDlpWrap
     .execPromise([
       "-f",
@@ -44,8 +42,6 @@ export function getAudioStreamUrl(videoUrl: string): Promise<string> {
       "--get-url",
       "--force-ipv4",
       "--geo-bypass",
-      "--cookies",
-      cookiesPath,
       videoUrl,
     ])
     .then((result) => result.trim())
