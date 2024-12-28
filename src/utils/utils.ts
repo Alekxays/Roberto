@@ -1,8 +1,7 @@
 import YTDlpWrap from "yt-dlp-wrap";
 import ytSearch from "yt-search";
 
-const ytDlpPath = "./bin/yt-dlp";
-const ytDlpWrap = new YTDlpWrap(ytDlpPath);
+const ytDlpWrap = new YTDlpWrap("./bin/yt-dlp"); // Spécifiez le chemin du binaire
 
 /**
  * Fetches videos from a YouTube playlist.
