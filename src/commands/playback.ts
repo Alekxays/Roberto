@@ -24,6 +24,7 @@ export async function playNextTrack(
     isPlaying = false;
 
     // Optionally disconnect the bot when queue is empty
+    // Optionally disconnect the bot when queue is empty
     if (currentConnection) {
       currentConnection.destroy();
       currentConnection = null;
