@@ -35,7 +35,7 @@ export async function getPlaylistVideos(
 }
 
 export function getAudioStreamUrl(videoUrl: string): Promise<string> {
-  const cookiesPath = path.resolve(__dirname, "../data/cookies.txt"); // Chemin vers le fichier cookies.txt
+  const cookiesPath = path.resolve(__dirname, "../../data/cookies.txt");
 
   return ytDlpWrap
     .execPromise([
