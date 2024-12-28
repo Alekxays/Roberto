@@ -1,7 +1,8 @@
 import YTDlpWrap from "yt-dlp-wrap";
 import ytSearch from "yt-search";
 
-const ytDlpWrap = new YTDlpWrap();
+const ytDlpPath = "./bin/yt-dlp";
+const ytDlpWrap = new YTDlpWrap(ytDlpPath);
 
 /**
  * Fetches videos from a YouTube playlist.
