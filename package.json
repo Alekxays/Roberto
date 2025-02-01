@@ -1,37 +1,25 @@
 {
-  "name": "discord-music-bot",
-  "version": "1.0.0",
-  "description": "Discord music bot papoy",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node dist/index.js",
-    "dev": "nodemon --watch . --ext ts,js,json --exec ts-node src/index.ts",
-    "build": "tsc"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@discordjs/builders": "^1.9.0",
-    "@discordjs/opus": "^0.9.0",
-    "@discordjs/voice": "^0.18.0",
-    "@types/fluent-ffmpeg": "^2.1.27",
-    "discord.js": "^14.16.3",
-    "dotenv": "^16.4.7",
-    "fluent-ffmpeg": "^2.1.3",
-    "opusscript": "^0.0.8",
-    "play-dl": "^1.9.7",
-    "spotify-web-api-node": "^5.0.2",
-    "typescript": "^5.7.2",
-    "url": "^0.11.4",
-    "yt-dlp-wrap": "^2.3.12",
-    "yt-search": "^2.12.1",
-    "ytdl-core": "^4.11.5"
-  },
-  "devDependencies": {
-    "@types/node": "^22.10.2",
-    "nodemon": "^3.1.9",
-    "ts-node": "^10.9.2"
-  }
+    "name": "roberto",
+    "main": "main.js",
+    "author": "Alekxays",
+    "version": "1.0.0",
+    "repository": "https://github.com/ZerioDev/Music-bot.git",
+    "description": "Roberto the GOAT",
+    "scripts": {
+        "start": "node main.js"
+    },
+    "dependencies": {
+        "@discord-player/extractor": "^4.3.1",
+        "@discordjs/opus": "^0.9.0",
+        "@distube/ytdl-core": "^4.11.8",
+        "@evan/opus": "^1.0.3",
+        "discord-player": "6.6.9-dev.1",
+        "discord-player-youtubei": "^1.3.3",
+        "discord.js": "^14.13.0",
+        "dotenv": "^16.4.5",
+        "ffmpeg-static": "^5.0.2",
+        "ms": "^3.0.0-canary.1",
+        "play-dl": "^1.9.6",
+        "translate": "^3.0.0"
+    }
 }
