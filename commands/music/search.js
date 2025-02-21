@@ -9,7 +9,7 @@ module.exports = {
     options: [
         {
             name: 'song',
-            description:('The song you want to search'),
+            description: ('The song you want to search'),
             type: ApplicationCommandOptionType.String,
             required: true,
         }
@@ -28,8 +28,8 @@ module.exports = {
 
         const queue = player.nodes.create(inter.guild, {
             metadata: {
-             channel: inter.channel
-                    },
+                channel: inter.channel
+            },
             spotifyBridge: client.config.opt.spotifyBridge,
             volume: client.config.opt.defaultvolume,
             leaveOnEnd: client.config.opt.leaveOnEnd,
@@ -42,7 +42,7 @@ module.exports = {
             .setAuthor({ name: await Translate(`Results for <${song}>`), iconURL: client.user.displayAvatarURL({ size: 1024, dynamic: true }) })
             .setDescription(await Translate(`<${maxTracks.map((track, i) => `**${i + 1}**. ${track.title} | ${track.author}`).join('\n')}\n\n> Select choice between <**1**> and <**${maxTracks.length}**> or <**cancel** ⬇️>`))
             .setTimestamp()
-            .setFooter({ text: await Translate('Music comes first - Made with heart by the Community <❤️>'), iconURL: inter.member.avatarURL({ dynamic: true }) })
+            .setFooter({ text: await Translate('Music comes first - Made with <❤️> by Alekxays'), iconURL: inter.member.avatarURL({ dynamic: true }) })
 
         inter.editReply({ embeds: [embed] });
 
@@ -71,7 +71,7 @@ module.exports = {
                 return inter.followUp({ content: await Translate(`I can't join the voice channel <${inter.member}>... try again ? <❌>`), ephemeral: true });
             }
 
-            await inter.followUp({content: await Translate(`Loading your search... <🎧>`), ephemeral: true });
+            await inter.followUp({ content: await Translate(`Loading your search... <🎧>`), ephemeral: true });
 
             queue.addTrack(res.tracks[query.content - 1]);
 

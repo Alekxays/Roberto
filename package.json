@@ -6,7 +6,9 @@
     "repository": "https://github.com/ZerioDev/Music-bot.git",
     "description": "Roberto the GOAT",
     "scripts": {
-        "start": "node main.js"
+        "start": "node main.js",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "lint": "eslint"
     },
     "dependencies": {
         "@discord-player/extractor": "^4.3.1",

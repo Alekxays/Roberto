@@ -1,0 +1,48 @@
+name: Deploy
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
+    - name: Install dependencies
+      run: npm ci
+    - name: Create .env file
+      env:
+        DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+        CLIENT_ID: ${{ secrets.CLIENT_ID }}
+      run: |
+        if [ -z "$DISCORD_TOKEN" ] || [ -z "$CLIENT_ID" ]; then
+          echo "Error: Missing required secrets"
+          exit 1
+        fi
+        cat << EOF > .env
+        TOKEN=${{ secrets.DISCORD_TOKEN }}
+        CLIENT_ID=${{ secrets.CLIENT_ID }}
+        EOF
+    - name: Deploy to server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          cd ~/roberto
+          git pull
+          npm install
+          if [ -f ".env" ]; then
+            cp .env .env.backup
+          fi
+          echo "TOKEN=${{ secrets.DISCORD_TOKEN }}" > .env
+          echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> .env
+          pm2 restart roberto || pm2 start main.js --name roberto

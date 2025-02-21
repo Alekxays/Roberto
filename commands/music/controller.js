@@ -3,13 +3,13 @@ const { Translate } = require('../../process_tools');
 
 module.exports = {
     name: 'controller',
-    description:("Send music controller to a channel"),
+    description: ("Send music controller to a channel"),
     voiceChannel: false,
     permissions: PermissionsBitField.Flags.ManageMessages,
     options: [
         {
             name: 'channel',
-            description:('The text channel you want to send it to'),
+            description: ('The text channel you want to send it to'),
             type: ApplicationCommandOptionType.Channel,
             required: true,
         }
@@ -23,7 +23,7 @@ module.exports = {
             .setTitle(await Translate('Control your music with the buttons below !'))
             .setImage(inter.guild.iconURL({ size: 4096, dynamic: true }))
             .setColor('#2f3136')
-            .setFooter({ text: await Translate('Music comes first - Made with heart by the Community <❤️>'), iconURL: inter.member.avatarURL({ dynamic: true }) });
+            .setFooter({ text: await Translate('Music comes first - Made with <❤️> by Alekxays'), iconURL: inter.member.avatarURL({ dynamic: true }) });
 
         inter.editReply({ content: await Translate(`Sending controller to <${channel}>... <✅>`) });
 

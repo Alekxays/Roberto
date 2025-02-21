@@ -27,10 +27,10 @@ module.exports = {
             .setAuthor({ name: track.title, iconURL: client.user.displayAvatarURL({ size: 1024, dynamic: true }) })
             .setThumbnail(track.thumbnail)
             .setDescription(await Translate(`Volume <**${queue.node.volume}**%> <\n> <Duration **${trackDuration}**> <\n> Progress <${progress}> <\n >Loop mode <**${methods[queue.repeatMode]}**> <\n>Requested by <${track.requestedBy}>`))
-            .setFooter({ text: await Translate('Music comes first - Made with heart by the Community <❤️>'), iconURL: inter.member.avatarURL({ dynamic: true }) })
+            .setFooter({ text: await Translate('Music comes first - Made with <❤️> by Alekxays'), iconURL: inter.member.avatarURL({ dynamic: true }) })
             .setColor('#2f3136')
             .setTimestamp();
-        
+
         const saveButton = new ButtonBuilder()
             .setLabel(EmojiState ? emojis.savetrack : ('Save this track'))
             .setCustomId('savetrack')
