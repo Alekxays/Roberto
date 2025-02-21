@@ -21,28 +21,17 @@ jobs:
       env:
         DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
         CLIENT_ID: ${{ secrets.CLIENT_ID }}
+        GUILD_ID: ${{ secrets.GUILD_ID }}
       run: |
-        if [ -z "$DISCORD_TOKEN" ] || [ -z "$CLIENT_ID" ]; then
+        if [ -z "$DISCORD_TOKEN" ] || [ -z "$CLIENT_ID" ] || [ -z "$GUILD_ID" ]; then
           echo "Error: Missing required secrets"
           exit 1
         fi
         cat << EOF > .env
         TOKEN=${{ secrets.DISCORD_TOKEN }}
         CLIENT_ID=${{ secrets.CLIENT_ID }}
+        GUILD_ID=${{ secrets.GUILD_ID }}
         EOF
-    - name: Deploy to server
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        script: |
-          cd ~/roberto
-          git pull
-          npm install
-          if [ -f ".env" ]; then
-            cp .env .env.backup
-          fi
-          echo "TOKEN=${{ secrets.DISCORD_TOKEN }}" > .env
-          echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> .env
-          pm2 restart roberto || pm2 start main.js --name roberto
+    - name: Start bot
+      run: |
+        npm start
