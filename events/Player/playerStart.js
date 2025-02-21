@@ -1,10 +1,11 @@
 const { ActionRowBuilder, ButtonBuilder, EmbedBuilder } = require("discord.js");
 const { Translate } = require("../../process_tools");
+const { client } = global;
 
 module.exports = (queue, track) => {
   if (!client.config.app.loopMessage && queue.repeatMode !== 0) return;
 
-  let EmojiState = client.config.app.enableEmojis;
+  let EmojiState = queue.currentTrack.raw.musicSource;
 
   const emojis = client.config.emojis;
 

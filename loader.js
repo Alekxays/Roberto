@@ -1,6 +1,7 @@
 const { readdirSync } = require("fs");
 const { Collection } = require("discord.js");
 const { useMainPlayer } = require("discord-player");
+const { client } = global;
 client.commands = new Collection();
 const commandsArray = [];
 const player = useMainPlayer();
@@ -48,7 +49,8 @@ GetTranslationModule().then(() => {
         delete require.cache[require.resolve(`./commands/${dirs}/${file}`)];
       } else {
         const txtEvent = `< -> > [Failed Command] <${command.name.toLowerCase()}>`;
-        parseLog(txtEvent);}
+        parseLog(txtEvent);
+      }
     }
   });
 

@@ -1,5 +1,7 @@
 const { ApplicationCommandOptionType, ActionRowBuilder, ButtonBuilder, ChannelType, EmbedBuilder, PermissionsBitField } = require('discord.js');
 const { Translate } = require('../../process_tools');
+const { useQueue } = require('discord-player');
+const { client } = global;
 
 module.exports = {
     name: 'controller',
@@ -19,6 +21,12 @@ module.exports = {
         const channel = inter.options.getChannel('channel');
         if (channel.type !== ChannelType.GuildText) return inter.editReply({ content: await Translate(`You need to send it to a text channel.. <❌>`) });
 
+        const queue = useQueue(inter.guild);
+        let EmojiState = false;
+        if (queue?.currentTrack) {
+            EmojiState = queue.currentTrack.raw.musicSource;
+        }
+
         const embed = new EmbedBuilder()
             .setTitle(await Translate('Control your music with the buttons below !'))
             .setImage(inter.guild.iconURL({ size: 4096, dynamic: true }))
@@ -27,11 +35,7 @@ module.exports = {
 
         inter.editReply({ content: await Translate(`Sending controller to <${channel}>... <✅>`) });
 
-        let EmojiState = client.config.app.enableEmojis;
-
         const emojis = client.config.emojis;
-
-        emojis ? EmojiState = EmojiState : EmojiState = false;
 
         const back = new ButtonBuilder()
             .setLabel(EmojiState ? emojis.back : ('Back'))

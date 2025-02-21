@@ -1,5 +1,5 @@
 const { ApplicationCommandOptionType, EmbedBuilder } = require('discord.js');
-const { useMainPlayer, useQueue } = require('discord-player');
+const { useQueue } = require('discord-player');
 const { Translate } = require('../../process_tools');
 
 module.exports = {
@@ -9,13 +9,13 @@ module.exports = {
     options: [
         {
             name: 'song',
-            description:('the name/url of the track you want to remove'),
+            description: ('the name/url of the track you want to remove'),
             type: ApplicationCommandOptionType.String,
             required: false,
         },
         {
             name: 'number',
-            description:('the place in the queue the song is in'),
+            description: ('the place in the queue the song is in'),
             type: ApplicationCommandOptionType.Number,
             required: false,
         }
@@ -45,7 +45,7 @@ module.exports = {
 
             trackName = name;
         }
-        
+
         const embed = new EmbedBuilder()
             .setColor('#2f3136')
             .setAuthor({ name: await Translate(`Removed <${trackName}> from the queue <✅>`) });

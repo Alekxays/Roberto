@@ -1,3 +1,4 @@
+const { client } = global;
 const maxVol = client.config.opt.maxVol || 100;
 const { ApplicationCommandOptionType } = require('discord.js');
 const { useQueue } = require('discord-player');
@@ -5,12 +6,12 @@ const { Translate } = require('../../process_tools');
 
 module.exports = {
     name: 'volume',
-    description:('Adjust the volume'),
+    description: ('Adjust the volume'),
     voiceChannel: true,
     options: [
         {
             name: 'volume',
-            description:('The new volume'),
+            description: ('The new volume'),
             type: ApplicationCommandOptionType.Number,
             required: true,
             minValue: 1,

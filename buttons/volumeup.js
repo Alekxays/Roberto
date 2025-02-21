@@ -1,4 +1,5 @@
 const { Translate } = require('../process_tools');
+const { client } = global;
 
 const maxVol = client.config.opt.maxVol;
 

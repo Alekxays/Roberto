@@ -1,6 +1,7 @@
 const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require('discord.js');
 const { useQueue } = require('discord-player');
 const { Translate } = require('../../process_tools');
+const { client } = global;
 
 module.exports = {
     name: 'nowplaying',
@@ -17,7 +18,12 @@ module.exports = {
         const trackDuration = timestamp.progress == 'Infinity' ? 'infinity (live)' : track.duration;
         const progress = queue.node.createProgressBar();
 
-        let EmojiState = client.config.app.enableEmojis;
+        let EmojiState;
+        if (queue.node.isPaused()) {
+            EmojiState = '⏸️';
+        }
+
+        EmojiState = queue.currentTrack.raw.musicSource;
 
         const emojis = client.config?.emojis;
 
