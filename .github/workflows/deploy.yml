@@ -19,8 +19,8 @@ jobs:
           
       - name: Install Dependencies
         run: |
-          npm ci
-          npm install ffmpeg-static @discordjs/opus @discordjs/voice discord-player sodium-native
+          npm install
+          npm rebuild sodium-native
           
       - name: Deploy to Render
         env:
